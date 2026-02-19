@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html>
     <head>
@@ -83,4 +84,76 @@
       ></script>
       <script src="https://bot.jaicp.com/chatwidget/mZcZyyXU:220d2b85229e45bde1bcbd0df71c23ad5db8e985/justwidget.js" async></script>
     </body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Morph тема от Bootswatch (Bootstrap 5) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/morph/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome (оставляем, если используешь иконки) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <title>{% block title %}Главная{% endblock %}</title>
+</head>
+<body>
+  <!-- Красивый навбар в стиле Morph -->
+  <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{ url_for('views.home') }}">Shocan</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          {% if current_user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('views.home') }}">Главная</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.logout') }}">Выйти</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.login') }}">Войти</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.sign_up') }}">Регистрация</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Контейнер для контента и флеш-сообщений -->
+  <div class="container mt-4">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </div>
+
+  <!-- Bootstrap 5 JS (обязательно для навбара, алертов и т.д.) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Твой кастомный JS (если есть) -->
+  <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
+
+  <!-- JAI CP чат-виджет (оставляем) -->
+  <script src="https://bot.jaicp.com/chatwidget/mZcZyyXU:220d2b85229e45bde1bcbd0df71c23ad5db8e985/justwidget.js" async></script>
+</body>
 </html>
