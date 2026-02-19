@@ -17,7 +17,7 @@
       <title>{% block title %}Главная{% endblock %}</title>
     </head>
     <body>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <button 
           class="navbar-toggler"  
           type="bytton" 
@@ -29,11 +29,12 @@
         <div class="collapse navbar-collapse" id="navbar">
           <div class="navbar-nav">
             {% if user.is_authenticated  %}
-            <a class="nav-item nav-link" id="home" href="/">Главная</a>
-            <a class="nav-item nav-link" id="logout" href="/logout">Выйти</a>
+              <a class="nav-item nav-link" id="home" href="/">Главная</a>
+              <a class="nav-item nav-link" href="{{ url_for('views.quiz') }}">Тест по кибербезопасности</a>
+              <a class="nav-item nav-link" id="logout" href="/logout">Выйти</a>
             {% else %}
-            <a class="nav-item nav-link" id="login" href="/login">Войти</a>
-            <a class="nav-item nav-link" id="signUp" href="/sign-up">Зарегестрироваться</a>
+              <a class="nav-item nav-link" id="login" href="/login">Войти</a>
+              <a class="nav-item nav-link" id="signUp" href="/sign-up">Зарегестрироваться</a>
             {% endif %}
           </div>
         </div>
@@ -62,6 +63,54 @@
       {% endwith %}
 
       <div class="container">{% block content %}{% endblock %}</div>
+      
+      {% if user.is_authenticated %}
+      <!-- Footer — только для авторизованных, синий как навбар -->
+      <footer class="bg-primary text-white pt-4 pb-3 mt-5"
+              style="border-top-left-radius: 20px; border-top-right-radius: 20px; 
+                    box-shadow: 0 -10px 30px rgba(0,0,0,0.3);">
+        <div class="container">
+          <div class="row align-items-center">
+            <!-- Левая часть: название + слоган -->
+            <div class="col-md-5 text-center text-md-start mb-3 mb-md-0">
+              <h5 class="fw-bold mb-1 fs-5">Shocan</h5>
+              <p class="small mb-0 opacity-90">
+                Твой личный щит в цифровом мире
+              </p>
+            </div>
+
+            <!-- Центральная часть: быстрые ссылки (горизонтально) -->
+            <div class="col-md-7">
+              <ul class="list-inline text-center text-md-end mb-0">
+                <li class="list-inline-item mx-3 mx-md-4">
+                  <a href="/" class="text-white text-decoration-none small fw-light">
+                    <i class="fa fa-home me-1"></i> Главная
+                  </a>
+                </li>
+                <li class="list-inline-item mx-3 mx-md-4">
+                  <a href="{{ url_for('views.quiz') }}" class="text-white text-decoration-none small fw-light">
+                    <i class="fa fa-shield-alt me-1"></i> Тест
+                  </a>
+                </li>
+                <li class="list-inline-item mx-3 mx-md-4">
+                  <a href="/logout" class="text-white text-decoration-none small fw-light">
+                    <i class="fa fa-sign-out-alt me-1"></i> Выйти
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Нижняя линия + копирайт -->
+          <hr class="bg-white opacity-25 my-3">
+          
+          <div class="text-center small opacity-85">
+            © Shocan • Сделано с заботой о твоей безопасности
+          </div>
+        </div>
+      </footer>
+      {% endif %} 
+
       <script
         src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

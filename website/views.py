@@ -33,3 +33,7 @@ def delete_note():
             db.session.commit()
         
     return jsonify({})
+
+@views.route('/quiz')
+def quiz():
+    return render_template('quiz.html', user=current_user)

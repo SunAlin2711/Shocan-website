@@ -1,23 +1,158 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %}
+{% extends "base.html" %}
+
+{% block title %}Shocan — Кибербезопасность просто и понятно{% endblock %}
+
 {% block content %}
 
-<h1  align="center">Заметки</h1>
-<ul class="list-group list-group-flush" id="notes">
-    {% for note in user.notes %}
-    <li class="list-group-item">{{ note.data }}
-        <button type="button" class="close" onClick="deleteNote({{  note.id }})">
-        <span aria-hidden="true">&times;</span>
-        </button>
-    </li>   
-    {% endfor %}
-</ul>
-<form method="POST">
-    <textarea name="note" id="note" class="form-control"></textarea>
-    <br />
-    <div align="center">
-        <button type="submit" class="btn btn-primary">Добавить</button>
+<!-- Hero Section – full-width без отступов по бокам -->
+<section class="text-white text-center py-5"
+         style="background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+                url('https://thumbs.dreamstime.com/b/abstract-futuristic-technology-background-glowing-blue-network-connections-lines-dots-concepts-data-science-internet-325661044.jpg');
+                background-size: cover; 
+                background-position: center; 
+                background-repeat: no-repeat;
+                min-height: 80vh;
+                width: 100vw;                  /* ← полная ширина viewport */
+                margin-left: calc(-50vw + 50%); /* ← центрируем без отступов Bootstrap */
+                margin-right: calc(-50vw + 50%);
+                position: relative;
+                display: flex; 
+                align-items: center;">
+  <div class="container">  <!-- ← container только для текста/кнопок внутри, чтобы они не растягивались -->
+    <h1 class="display-4 fw-bold mb-4">Добро пожаловать в Shocan</h1>
+    <p class="lead fs-4 mb-5">
+      Простой ресурс по кибербезопасности.<br>
+      Пройди тест, читай советы и сохраняй важные заметки.
+    </p>
+    
+    <div class="d-flex justify-content-center gap-4 flex-wrap">
+      <a href="{{ url_for('views.quiz') }}" class="btn btn-primary btn-lg px-5 py-3">
+        Пройти тест по защите
+      </a>
+      <a href="#notes-section" class="btn btn-outline-light btn-lg px-5 py-3">
+        Мои заметки
+      </a>
     </div>
-</form>
+  </div>
+</section>
 
+<!-- Секция преимуществ -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-5 fw-bold">Почему стоит быть здесь</h2>
+    
+    <div class="row text-center g-4">
+      <div class="col-md-4">
+        <div class="card h-100 shadow border-0">
+          <div class="card-body">
+            <i class="fa fa-shield-alt fa-4x text-primary mb-4"></i>
+            <h4 class="card-title">Понятный язык</h4>
+            <p class="card-text">Без сложных терминов — всё объясняем просто и ясно.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="card h-100 shadow border-0">
+          <div class="card-body">
+            <i class="fa fa-stopwatch fa-4x text-primary mb-4"></i>
+            <h4 class="card-title">Быстрый тест</h4>
+            <p class="card-text">5–7 минут — и ты знаешь свой уровень защиты.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="card h-100 shadow border-0">
+          <div class="card-body">
+            <i class="fa fa-sticky-note fa-4x text-primary mb-4"></i>
+            <h4 class="card-title">Личные заметки</h4>
+            <p class="card-text">Сохраняй советы, пароли, напоминания — всё в одном месте.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Заметки — основная часть после логина -->
+<section id="notes-section" class="py-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+      <h2 class="fw-bold m-0">Мои заметки по кибербезопасности</h2>
+    </div>
+
+    <!-- Форма добавления (в красивой карточке) -->
+    <div class="card shadow-sm border-0 mb-5">
+      <div class="card-body">
+        <form method="POST">
+          <textarea 
+            name="note" 
+            class="form-control form-control-lg mb-3" 
+            rows="3" 
+            placeholder="Напиши новую заметку... (например: 'Не открывать ссылки из незнакомых email')"
+            required
+          ></textarea>
+          <button type="submit" class="btn btn-primary btn-lg w-100">
+            <i class="fa fa-plus me-2"></i> Добавить заметку
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Список заметок -->
+    {% if user.notes %}
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="notes">
+        {% for note in user.notes %}
+          <div class="col">
+            <div class="card h-100 shadow note-card border-0">
+              <div class="card-body d-flex flex-column">
+                <p class="card-text flex-grow-1 mb-3" style="white-space: pre-wrap;">{{ note.data }}</p>
+                
+                <div class="d-flex justify-content-between align-items-center mt-auto">
+                  <small class="text-muted">
+                    {% if note.date_created %}{{ note.date_created.strftime('%d.%m.%Y %H:%M') }}{% else %}Без даты{% endif %}
+                  </small>
+                  <button 
+                    type="button" 
+                    class="btn btn-sm btn-outline-danger"
+                    onclick="deleteNote({{ note.id }})"
+                    title="Удалить"
+                  >
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="text-center py-5 text-muted">
+        <i class="fa fa-sticky-note fa-5x mb-3 opacity-50"></i>
+        <h4>Заметок пока нет</h4>
+        <p class="lead">Добавь первую заметку выше — она сохранится здесь навсегда</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+
+
+<style>
+  .note-card {
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    background: white;
+  }
+  .note-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important;
+  }
+  .note-card .card-text {
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+</style>
 
 {% endblock %}
