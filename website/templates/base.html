@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,8 +17,115 @@
       />
       <title>{% block title %}Главная{% endblock %}</title>
     </head>
+      <style>
+      :root {
+              --cosmic-dark: #0b132b;
+              --cosmic-indigo: #1f1b4d;
+              --cosmic-gold: #d4a373;
+              --cosmic-gold-light: #e8c39e;
+              --text-soft: #f0e6d2;
+          }
+
+          .navbar {
+              background: linear-gradient(135deg, var(--cosmic-dark), var(--cosmic-indigo)) !important;
+              backdrop-filter: blur(8px);
+              -webkit-backdrop-filter: blur(8px);
+              box-shadow: 0 4px 20px rgba(0,0,0,0.55);
+              border-bottom: 1px solid rgba(212,163,115,0.18);
+          }
+
+          .navbar-brand {
+              color: var(--text-soft) !important;
+              font-weight: 700;
+              font-size: 1.6rem;
+              transition: color 0.3s ease;
+          }
+
+          .navbar-brand:hover {
+              color: var(--cosmic-gold) !important;
+          }
+
+          .nav-link {
+              color: #d0d0ff !important;
+              font-weight: 500;
+              transition: all 0.3s ease;
+          }
+
+          .nav-link:hover {
+              color: var(--cosmic-gold) !important;
+              transform: translateY(-1px);
+          }
+
+          .btn-outline-cosmic {
+              color: var(--cosmic-gold-light);
+              border: 2px solid var(--cosmic-gold);
+              border-radius: 50px;
+              padding: 0.5rem 1.5rem;
+              font-weight: 600;
+              transition: all 0.35s ease;
+          }
+
+          .btn-outline-cosmic:hover,
+          .btn-outline-cosmic:focus {
+              background: var(--cosmic-gold);
+              color: var(--cosmic-dark);
+              box-shadow: 0 0 18px rgba(212,163,115,0.6);
+              transform: translateY(-2px);
+          }
+
+          /* Для мобильных — кнопка растягивается */
+          @media (max-width: 991px) {
+              .btn-outline-cosmic {
+                  width: 100%;
+                  margin-top: 0.75rem;
+              }
+          }
+
+          
+      </style>
     <body>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid px-4 px-lg-5">
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <span class="me-2">🌙</span>Shocan
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav gap-4 ml-auto align-items-center">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" style="margin-right: 4rem" href="/">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="margin-right: 4rem" href="{{ url_for('views.quiz') }}">Тест</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="margin-right: 4rem" href="{{ url_for('views.lessons') }}">Лекции</a>
+                        </li>
+                        <li class="nav-item ml-lg-3">
+                            <a class="btn btn-outline-cosmic" href="/logout">Выйти</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Войти</a>
+                        </li>
+                        <li class="nav-item ml-2 ml-lg-3">
+                            <a class="btn btn-outline-cosmic" href="/sign-up">Зарегистрироваться</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+      </nav>
+      <!-- <nav class="navbar navbar-expand-lg navbar-dark fixed-top"
+        style="background: linear-gradient(to bottom, #0f1a3a, #081027);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            border-bottom: 1px solid rgba(212,163,115,0.15);">
         <button 
           class="navbar-toggler"  
           type="bytton" 
@@ -27,7 +135,8 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar">
-          <div class="navbar-nav">
+          <div class="navbar-nav"> 
+
             {% if user.is_authenticated  %}
               <a class="nav-item nav-link" id="home" href="/">Главная</a>
               <a class="nav-item nav-link" href="{{ url_for('views.quiz') }}">Тест по кибербезопасности</a>
@@ -38,8 +147,20 @@
             {% endif %}
           </div>
         </div>
-      </nav>
-
+      </nav>  -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }} alert-dismissible fade show mt-5 mx-3" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <!--
       {% with messages = get_flashed_messages(with_categories=true)  %}
       {% if messages %}
         {% for category, message in messages %}
@@ -60,17 +181,18 @@
         {% endif %}
         {% endfor %}
       {% endif %}
-      {% endwith %}
+      {% endwith %} -->
 
       <div class="container">{% block content %}{% endblock %}</div>
       
       {% if user.is_authenticated %}
-      <!-- Footer — только для авторизованных, синий как навбар -->
-      <footer class="bg-primary text-white pt-4 pb-3 mt-5"
-              style="border-top-left-radius: 20px; border-top-right-radius: 20px; 
-                    box-shadow: 0 -10px 30px rgba(0,0,0,0.3);">
+      <!-- Footer — в цвете шапки: глубокий космос с градиентом -->
+      <footer class="text-white pt-4 pb-3 mt-5"
+              style="background: linear-gradient(to bottom, #081027, #0f1a3a);
+                    
+                    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);">
         <div class="container">
-          <div class="row align-items-center">
+          <div class="row align-items-center"> 
             <!-- Левая часть: название + слоган -->
             <div class="col-md-5 text-center text-md-start mb-3 mb-md-0">
               <h5 class="fw-bold mb-1 fs-5">Shocan</h5>
@@ -132,6 +254,7 @@
       ></script>
       <script src="https://bot.jaicp.com/chatwidget/mZcZyyXU:220d2b85229e45bde1bcbd0df71c23ad5db8e985/justwidget.js" async></script>
     </body>
-</html>
+</html> 
+
 
 

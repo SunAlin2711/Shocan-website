@@ -2,6 +2,101 @@
 
 
 {% block content %}
+<div class="container mt-5 pt-5">  <!-- отступ сверху от шапки (можно увеличить pt-5 → pt-6) -->
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-0" 
+                 style="border-radius: 16px; 
+                        background: rgba(15, 26, 58, 0.85); 
+                        backdrop-filter: blur(10px); 
+                        -webkit-backdrop-filter: blur(10px);">
+                
+                <div class="card-body p-5 text-white">
+                    <h3 class="text-center mb-5 fw-bold">Создать аккаунт в Shocan</h3>
+
+                    <form method="POST">
+                        <div class="mb-4">
+                            <label for="email" class="form-label fw-medium">Электронная почта</label>
+                            <input type="email" 
+                                   class="form-control form-control-lg" 
+                                   id="email" 
+                                   name="email" 
+                                   placeholder="Введите почту" 
+                                   required />
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="firstName" class="form-label fw-medium">Имя</label>
+                            <input type="text" 
+                                   class="form-control form-control-lg" 
+                                   id="firstName" 
+                                   name="firstName" 
+                                   placeholder="Введите имя" 
+                                   required />
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="password1" class="form-label fw-medium">Пароль</label>
+                            <input type="password" 
+                                   class="form-control form-control-lg" 
+                                   id="password1" 
+                                   name="password1" 
+                                   placeholder="Придумайте пароль" 
+                                   required />
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="password2" class="form-label fw-medium">Подтвердите пароль</label>
+                            <input type="password" 
+                                   class="form-control form-control-lg" 
+                                   id="password2" 
+                                   name="password2" 
+                                   placeholder="Повторите пароль" 
+                                   required />
+                        </div>
+
+                        <!-- Красивая кнопка -->
+                        <button type="submit" 
+                                class="btn btn-lg w-100 fw-bold btn-signup-custom mt-3">
+                            Создать аккаунт
+                        </button>
+                    </form>
+
+                    <p class="text-center mt-4 small">
+                        Уже есть аккаунт? 
+                        <a href="{{ url_for('auth.login') }}" 
+                           class="text-decoration-none" 
+                           style="color: #d4a373;">
+                            Войти
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Стили для кнопки -->
+<style>
+    .btn-signup-custom {
+        background: linear-gradient(135deg, #2f2a6e, #1f1b4d);
+        color: #f0e6d2;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(31,27,77,0.5);
+        transition: all 0.35s ease;
+    }
+
+    .btn-signup-custom:hover,
+    .btn-signup-custom:focus {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 35px rgba(212,163,115,0.6), 
+                    0 0 25px rgba(212,163,115,0.4);
+        background: linear-gradient(135deg, #3a2fb3, #2f2a6e);
+        color: #ffd700;
+    }
+</style>
+<!--
 <form method="POST">
     <h3 align="center">Создать Аккаунт</h3>
     <div class="form-group">
@@ -46,5 +141,5 @@
     </div>
     <br />
     <button  type="submit" class="btn btn-primary">Создать</button>
-</form>
+</form> -->
 {% endblock %}

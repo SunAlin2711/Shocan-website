@@ -3,13 +3,231 @@
 {% block title %}Тест по кибербезопасности{% endblock %}
 
 {% block content %}
+<div class="container mt-5 pt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-9">
+            <h2 class="text-center mb-4 fw-bold text-black">Тест: Насколько ты защищён в интернете?</h2>
+            <p class="text-center lead mb-5 text-black opacity-90">
+                Ответь честно на 5 вопросов. Время не ограничено. Узнай свой уровень защиты! 🌙🔒
+            </p>
 
+            <form id="quizForm">
+                <!-- Вопрос 1 -->
+                <div class="card mb-4 shadow border-0" style="border-radius: 12px; overflow: hidden;">
+                    <div class="card-header bg-gradient text-white" style="background: linear-gradient(135deg, #2f2a6e, #1f1b4d);">
+                        <h5 class="mb-0">1. Какой пароль считается самым надёжным?</h5>
+                    </div>
+                    <div class="card-body bg-dark text-white">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="q1" value="a" id="q1a">
+                            <label class="form-check-label" for="q1a">123456 или имя питомца</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="q1" value="b" id="q1b">
+                            <label class="form-check-label" for="q1b">Случайный набор символов 16+ (через менеджер паролей)</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q1" value="c" id="q1c">
+                            <label class="form-check-label" for="q1c">Дата рождения + имя</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Вопрос 2 -->
+                <div class="card mb-4 shadow border-0" style="border-radius: 12px; overflow: hidden;">
+                    <div class="card-header bg-gradient text-white" style="background: linear-gradient(135deg, #2f2a6e, #1f1b4d);">
+                        <h5 class="mb-0">2. Получил письмо «Ваш банк заблокировал карту, срочно перейдите по ссылке» — твои действия?</h5>
+                    </div>
+                    <div class="card-body bg-dark text-white">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="q2" value="a" id="q2a">
+                            <label class="form-check-label" for="q2a">Перейду по ссылке и введу данные, чтобы разблокировать</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="q2" value="b" id="q2b">
+                            <label class="form-check-label" for="q2b">Сам зайду в официальное приложение/сайт банка и проверю</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q2" value="c" id="q2c">
+                            <label class="form-check-label" for="q2c">Удалю письмо и забуду</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Вопрос 3 -->
+                <div class="card mb-4 shadow border-0" style="border-radius: 12px; overflow: hidden;">
+                    <div class="card-header bg-gradient text-white" style="background: linear-gradient(135deg, #2f2a6e, #1f1b4d);">
+                        <h5 class="mb-0">3. Зачем нужна двухфакторная аутентификация (2FA)?</h5>
+                    </div>
+                    <div class="card-body bg-dark text-white">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="q3" value="a" id="q3a">
+                            <label class="form-check-label" for="q3a">Чтобы аккаунт взломали быстрее</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="q3" value="b" id="q3b">
+                            <label class="form-check-label" for="q3b">Добавляет второй уровень защиты (код из SMS / приложения)</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q3" value="c" id="q3c">
+                            <label class="form-check-label" for="q3c">Чтобы было удобнее заходить</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Вопрос 4 -->
+                <div class="card mb-4 shadow border-0" style="border-radius: 12px; overflow: hidden;">
+                    <div class="card-header bg-gradient text-white" style="background: linear-gradient(135deg, #2f2a6e, #1f1b4d);">
+                        <h5 class="mb-0">4. Что такое фишинг?</h5>
+                    </div>
+                    <div class="card-body bg-dark text-white">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="q4" value="a" id="q4a">
+                            <label class="form-check-label" for="q4a">Вид рыбалки в интернете</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="q4" value="b" id="q4b">
+                            <label class="form-check-label" for="q4b">Мошенничество, когда тебя обманом заставляют ввести данные на поддельном сайте</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q4" value="c" id="q4c">
+                            <label class="form-check-label" for="q4c">Программа для защиты от вирусов</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Вопрос 5 -->
+                <div class="card mb-4 shadow border-0" style="border-radius: 12px; overflow: hidden;">
+                    <div class="card-header bg-gradient text-white" style="background: linear-gradient(135deg, #2f2a6e, #1f1b4d);">
+                        <h5 class="mb-0">5. Почему важно обновлять приложения и операционную систему?</h5>
+                    </div>
+                    <div class="card-body bg-dark text-white">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="q5" value="a" id="q5a">
+                            <label class="form-check-label" for="q5a">Чтобы быстрее работали и меньше места занимали</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="q5" value="b" id="q5b">
+                            <label class="form-check-label" for="q5b">Обновления закрывают уязвимости и защищают от новых атак</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q5" value="c" id="q5c">
+                            <label class="form-check-label" for="q5c">Чтобы производитель зарабатывал больше денег</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Кнопка завершения теста -->
+                <div class="text-center mt-5 mb-5">
+                    <button type="button" id="submitQuiz" 
+                            class="btn btn-lg px-5 py-3 fw-bold btn-quiz-submit">
+                        Завершить тест и увидеть результат
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Твой блок результата (оставил ровно как у тебя) -->
+  <div id="result" class="mt-5 text-center text-black" style="display:none;">
+    <h3 class="fw-bold">Твой результат:</h3>
+    <p id="score" class="fs-1 fw-bold"></p>
+    <p id="message" class="lead"></p>
+  </div>
+</div>
+
+<!-- Скрипт, который привязывается к ТВОЕЙ кнопке -->
+<script>
+const correctAnswers = {
+  q1: 'b',
+  q2: 'b',
+  q3: 'b',
+  q4: 'b',
+  q5: 'b'   // ← если у тебя в 5-м вопросе правильный 'a' — поменяй здесь
+};
+
+document.getElementById('submitQuiz').addEventListener('click', function() {
+  let score = 0;
+  let answered = 0;
+  const questions = ['q1', 'q2', 'q3', 'q4', 'q5'];
+
+  questions.forEach(q => {
+    const selected = document.querySelector(`input[name="${q}"]:checked`);
+    if (selected) {
+      answered++;
+      if (selected.value === correctAnswers[q]) {
+        score++;
+      }
+    }
+  });
+
+  if (answered < questions.length) {
+    alert("Ответь на все вопросы, пожалуйста!");
+    return;
+  }
+
+  const total = questions.length;
+  const percentage = Math.round((score / total) * 100);
+
+  // Твой формат вывода
+  document.getElementById('score').textContent = `${score} из ${total} (${percentage}%)`;
+
+  let message = '';
+  if (percentage >= 80) {
+    message = 'Ты настоящий цифровой ниндзя! 🔥';
+  } else if (percentage >= 50) {
+    message = 'Неплохо, но есть куда расти 💪';
+  } else {
+    message = 'Пора подтянуть знания по кибербезопасности! 📚';
+  }
+
+  document.getElementById('message').textContent = message;
+
+  // Показываем результат
+  document.getElementById('result').style.display = 'block';
+
+  // Плавная прокрутка к результату
+  document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+});
+</script>
+
+<!-- Стили (можно вынести в base.html) -->
+<style>
+    .bg-gradient {
+        background: linear-gradient(135deg, #2f2a6e, #1f1b4d);
+    }
+
+    .btn-quiz-submit {
+        background: linear-gradient(135deg, #2f2a6e, #1f1b4d);
+        color: #f0e6d2;
+        border: none;
+        border-radius: 50px;
+        box-shadow: 0 8px 25px rgba(31,27,77,0.6);
+        transition: all 0.4s ease;
+        min-width: 300px;
+    }
+
+    .btn-quiz-submit:hover,
+    .btn-quiz-submit:focus {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 40px rgba(212,163,115,0.7), 0 0 30px rgba(212,163,115,0.5);
+        background: linear-gradient(135deg, #3a2fb3, #2f2a6e);
+        color: #ffd700;
+    }
+
+    .card-body {
+        background: #0f1a3a !important;
+    }
+</style>
+
+
+
+<!--
 <div class="container mt-5">
   <h2 class="text-center mb-4">Тест: Насколько ты защищён в интернете?</h2>
   <p class="text-center lead mb-5">Ответь на 5 вопросов. Время не ограничено.</p>
 
   <form id="quizForm">
-    <!-- Вопрос 1 -->
+    -- Вопрос 1 --
     <div class="card mb-4">
       <div class="card-header bg-primary text-white">
         <h5 class="mb-0">1. Что лучше использовать в качестве пароля?</h5>
@@ -30,7 +248,7 @@
       </div>
     </div>
 
-    <!-- Вопрос 2 -->
+    -- Вопрос 2 --
     <div class="card mb-4">
       <div class="card-header bg-primary text-white">
         <h5 class="mb-0">2. Что делать, если пришло письмо "Ваш банк заблокировал карту"?</h5>
@@ -47,11 +265,11 @@
         <div class="form-check">
           <input class="form-check-input" type="radio" name="q2" value="c" id="q2c">
           <label class="form-check-label" for="q2c">Поговорить с котом</label>
-        </div><!-- добавь ещё варианты если хочешь -->
+        </div>-- добавь ещё варианты если хочешь --
       </div>
     </div>
 
-    <!-- Вопрос 3 -->
+    -- Вопрос 3 --
     <div class="card mb-4">
       <div class="card-header bg-primary text-white">
         <h5 class="mb-0">3. Зачем нужна двухфакторная аутентификация (2FA)?</h5>
@@ -68,11 +286,11 @@
         <div class="form-check">
           <input class="form-check-input" type="radio" name="q3" value="c" id="q3c">
           <label class="form-check-label" for="q3c">Всеответы верны</label>
-        </div><!-- добавь ещё варианты если хочешь -->
+        </div>-- добавь ещё варианты если хочешь --
       </div>
     </div>
     
-    <!-- Вопрос 4 -->
+    -- Вопрос 4 --
     <div class="card mb-4">
       <div class="card-header bg-primary text-white">
         <h5 class="mb-0">4. Что такое вредоносное ПО (вирус)?</h5>
@@ -89,11 +307,11 @@
         <div class="form-check">
           <input class="form-check-input" type="radio" name="q4" value="c" id="q4c">
           <label class="form-check-label" for="q4c">Это  программа, созданная для  защиты данных</label>
-        </div><!-- добавь ещё варианты если хочешь -->
+        </div>-- добавь ещё варианты если хочешь --
       </div>
     </div>
 
-    <!-- Вопрос 5 -->
+    -- Вопрос 5 --
     <div class="card mb-4">
       <div class="card-header bg-primary text-white">
         <h5 class="mb-0">5. Почему важно обновлять программы и систему?</h5>
@@ -110,7 +328,7 @@
         <div class="form-check">
           <input class="form-check-input" type="radio" name="q5" value="c" id="q5c">
           <label class="form-check-label" for="q5c">Потому что без обновлениий компьютер взорвется</label>
-        </div><!-- добавь ещё варианты если хочешь -->
+        </div>--добавь ещё варианты если хочешь --
       </div>
     </div>
    
@@ -118,17 +336,17 @@
     <div class="text-center">
       <button type="button" class="btn btn-lg btn-success" onclick="checkQuiz()">Завершить тест</button>
     </div>
-  </form>
+  </form> 
 
   <div id="result" class="mt-5 text-center" style="display:none;">
     <h3>Твой результат:</h3>
     <p id="score" class="fs-1 fw-bold"></p>
     <p id="message"></p>
   </div>
-</div>
+</div> 
 
 <script>
-// Массив правильных ответов (можно расширить)
+// Массив правильных ответов 
 const correctAnswers = {
   q1: 'b',
   q2: 'b',
@@ -136,7 +354,7 @@ const correctAnswers = {
   q4: 'b',
   q5: 'a',
   // q3: 'a', и т.д.
-};
+}; 
 
 function checkQuiz() {
   let score = 0;
@@ -165,5 +383,5 @@ function checkQuiz() {
   window.scrollTo(0, document.body.scrollHeight);
 }
 </script>
-
+-->
 {% endblock %}

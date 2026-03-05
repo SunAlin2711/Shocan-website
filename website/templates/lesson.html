@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}{{ lesson.title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-4">
+    <a href="{{ url_for('views.lessons') }}" class="btn btn-outline-light mb-4">
+        ← Назад к списку лекций
+    </a>
+
+    <h1 class="mb-4 text-white">{{ lesson.title }}</h1>
+    <p class="lead text-white-75 mb-5">{{ lesson.description }}</p>
+
+    <div class="row g-4">
+        <!-- Левая часть: медиа + текст -->
+        <div class="col-lg-8">
+            {% if lesson.video %}
+            <div class="mb-5">
+                <h5 class="text-white mb-3">Видео лекции</h5>
+                <div class="ratio ratio-16x9 rounded overflow-hidden shadow">
+                    <iframe src="{{ lesson.video }}" title="Видео урока" allowfullscreen></iframe>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if lesson.audio %}
+            <div class="mb-5">
+                <h5 class="text-white mb-3">Аудио версия лекции</h5>
+                <audio controls class="w-100 bg-dark rounded p-2">
+                    <source src="{{ lesson.audio }}" type="audio/mpeg">
+                    Ваш браузер не поддерживает воспроизведение аудио.
+                </audio>
+            </div>
+            {% endif %}
+
+            <div class="bg-dark p-4 rounded border border-secondary">
+                <h5 class="text-white mb-3">Текст лекции</h5>
+                <div class="text-white lh-lg" style="white-space: pre-wrap;">
+                    {{ lesson.text }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Правая часть: фото / иллюстрации -->
+        <div class="col-lg-4">
+            {% if lesson.image %}
+            <img src="{{ lesson.image }}" 
+                 class="img-fluid rounded shadow" 
+                 alt="{{ lesson.title }}" 
+                 loading="lazy"
+                 style="max-height: 500px; object-fit: cover; width: 100%;">
+            {% else %}
+            <div class="bg-secondary rounded p-5 text-center text-muted">
+                <i class="fa fa-image fa-3x mb-3"></i><br>
+                Иллюстрация к уроку скоро появится
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

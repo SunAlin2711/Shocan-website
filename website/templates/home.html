@@ -7,17 +7,20 @@
 <!-- Hero Section – full-width без отступов по бокам -->
 <section class="text-white text-center py-5"
          style="background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
-                url('https://thumbs.dreamstime.com/b/abstract-futuristic-technology-background-glowing-blue-network-connections-lines-dots-concepts-data-science-internet-325661044.jpg');
+                url('https://cdn.discordapp.com/attachments/1477030616968204362/1479239096202297354/b51eaf6f-0224-4e62-98f4-95858af1965f.png?ex=69ab5043&is=69a9fec3&hm=886747f4a91c544baf495b5d749fd7bc15aa72b72658419f541def81f8f1d669&');
                 background-size: cover; 
-                background-position: center; 
+                background-position: center 10%; 
                 background-repeat: no-repeat;
-                min-height: 80vh;
-                width: 100vw;                  /* ← полная ширина viewport */
+                min-height: 100vh;
+                width: 99.6vw;                  /* ← полная ширина viewport */
                 margin-left: calc(-50vw + 50%); /* ← центрируем без отступов Bootstrap */
                 margin-right: calc(-50vw + 50%);
                 position: relative;
                 display: flex; 
-                align-items: center;">
+                align-items: center;
+                padding-top: 140px;          /* ← вот это добавь или измени значение */
+                
+                ">
   <div class="container">  <!-- ← container только для текста/кнопок внутри, чтобы они не растягивались -->
     <h1 class="display-4 fw-bold mb-4">Добро пожаловать в Shocan</h1>
     <p class="lead fs-4 mb-5">
@@ -26,10 +29,15 @@
     </p>
     
     <div class="d-flex justify-content-center gap-4 flex-wrap">
-      <a href="{{ url_for('views.quiz') }}" class="btn btn-primary btn-lg px-5 py-3">
+      <a href="{{ url_for('views.quiz') }}" 
+        class="btn btn-primary btn-lg px-5 py-3 mr-5 mr-md-5 btn-hover-lift"
+        style="background: linear-gradient(90deg, #d4a373, #e8c39e);
+                border: none;
+                box-shadow: 0 6px 20px rgba(212,163,115,0.4);">
         Пройти тест по защите
       </a>
-      <a href="#notes-section" class="btn btn-outline-light btn-lg px-5 py-3">
+      <a href="#notes-section" 
+        class="btn btn-outline-light btn-lg px-5 py-3 btn-hover-lift btn-hover-lift-outline">
         Мои заметки
       </a>
     </div>
@@ -93,7 +101,15 @@
             placeholder="Напиши новую заметку... (например: 'Не открывать ссылки из незнакомых email')"
             required
           ></textarea>
-          <button type="submit" class="btn btn-primary btn-lg w-100">
+          
+          <!-- Новая кнопка: глубокий индиго с градиентом -->
+          <button type="submit" 
+                  class="btn btn-lg w-100 fw-bold btn-cosmic-indigo"
+                  style="background: linear-gradient(135deg, #0f1a3a, #081027);
+                        color: #f8f8f8;                /* мягкий кремовый/бежевый текст */
+                        border: none;
+                        box-shadow: 0 6px 20px rgba(26, 18, 112, 0.5);
+                        transition: all 0.3s ease;">
             <i class="fa fa-plus me-2"></i> Добавить заметку
           </button>
         </form>
@@ -152,6 +168,38 @@
   .note-card .card-text {
     font-size: 1.05rem;
     line-height: 1.6;
+  }
+  btn-hover-lift {
+    transition: all 0.3s ease;
+    transform: translateY(0);
+    box-shadow: 0 6px 20px rgba(212, 163, 115, 0.3); /* базовая тень золотистая */
+  }
+
+  .btn-hover-lift:hover {
+    transform: translateY(-8px) scale(1.05);          /* подъём + чуть увеличение */
+    box-shadow: 0 15px 35px rgba(212, 163, 115, 0.6); /* сильное золотое свечение */
+  }
+
+  /* Для outline-кнопки делаем свечение внутри и снаружи */
+  .btn-hover-lift-outline:hover {
+    background: rgba(212, 163, 115, 0.15);            /* лёгкий залив золотом */
+    box-shadow: 0 0 25px rgba(212, 163, 115, 0.7), inset 0 0 15px rgba(212, 163, 115, 0.4);
+  }
+  .btn-cosmic-indigo {
+    background: linear-gradient(135deg, #2f2a6e, #1f1b4d);
+    color: #f0e6d2;
+    border: none;
+    box-shadow: 0 6px 20px rgba(31,27,77,0.5);
+    transition: all 0.35s ease;
+  }
+
+  .btn-cosmic-indigo:hover,
+  .btn-cosmic-indigo:focus {
+    background: linear-gradient(135deg, #3a2fb3, #2f2a6e);  /* чуть светлее и ярче */
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(212,163,115,0.5),  /* золотистое свечение */
+                0 0 25px rgba(212,163,115,0.3);
+    color: #ffd700;  /* золотистый текст на hover — опционально, можно оставить #f0e6d2 */
   }
 </style>
 

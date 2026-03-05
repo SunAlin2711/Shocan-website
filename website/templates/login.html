@@ -2,6 +2,39 @@
 
 
 {% block content %}
+<div class="container mt-5 pt-5">  <!-- ← вот этот отступ: mt-5 pt-5 даёт хороший воздух сверху -->
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-0" style="border-radius: 16px; background: rgba(15, 26, 58, 0.85); backdrop-filter: blur(8px);">
+                <div class="card-body p-5 text-white">
+                    <h3 class="text-center mb-4 fw-bold">Войти в Shocan</h3>
+
+                    <form method="POST">
+                        <div class="mb-4">
+                            <label for="email" class="form-label fw-medium">Электронная почта</label>
+                            <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Введите email" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="password" class="form-label fw-medium">Пароль</label>
+                            <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Введите пароль" required>
+                        </div>
+
+                        <!-- Красивая кнопка Войти -->
+                        <button type="submit" class="btn btn-lg w-100 fw-bold btn-login-custom mt-3">
+                            Войти
+                        </button>
+                    </form>
+
+                    <p class="text-center mt-4 small">
+                        <a href="{{ url_for('auth.forgot_password') }}" class="text-decoration-none" style="color: #d4a373;">Забыли пароль?</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
 <form method="POST">
     <h3 align="center">Войти</h3>
     <div class="form-group">
@@ -29,5 +62,23 @@
     <p class="text-center mt-3">
     <a href="{{ url_for('auth.forgot_password') }}">Забыл пароль?</a>
 </p>
-</form>
+</form> -->
+<style>
+    .btn-login-custom {
+        background: linear-gradient(135deg, #2f2a6e, #1f1b4d);
+        color: #f0e6d2;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(31,27,77,0.5);
+        transition: all 0.35s ease;
+    }
+
+    .btn-login-custom:hover,
+    .btn-login-custom:focus {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 35px rgba(212,163,115,0.6), 0 0 25px rgba(212,163,115,0.4);
+        background: linear-gradient(135deg, #3a2fb3, #2f2a6e);
+        color: #ffd700;
+    }
+</style>
 {% endblock %}

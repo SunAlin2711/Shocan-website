@@ -10,14 +10,14 @@ DB_NAME  = "database.db"
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'qwerty123'   # можно любой текст, это просто секретный ключ
+    app.config['SECRET_KEY'] = 'qwerty123'   # это просто секретный ключ
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
 
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 587
     app.config['MAIL_USE_TLS'] = True
-    app.config['MAIL_USERNAME'] = 'sungatovaalinur@gmail.com'          # ← твой реальный Gmail
+    app.config['MAIL_USERNAME'] = 'sungatovaalinur@gmail.com'          # ← реальный Gmail
     app.config['MAIL_PASSWORD'] = 'zecx rxzt vwgg kcgt'               # ← App Password (16 символов от Google)
 
     mail = Mail(app)
