@@ -3,19 +3,19 @@
 
 {% block content %}
 <div class="container mt-5 pt-4">
-    <a href="{{ url_for('views.lessons') }}" class="btn btn-outline-light mb-4">
+    <a href="{{ url_for('views.lessons') }}" class="btn btn-light text-dark fw-bold mb-4 shadow-sm hover-shadow-lg transition-all">
         ← Назад к списку лекций
     </a>
 
-    <h1 class="mb-4 text-white">{{ lesson.title }}</h1>
-    <p class="lead text-white-75 mb-5">{{ lesson.description }}</p>
+    <h2 class="mb-4 text-black">{{ lesson.title }}</h2>
+    <p class="lead text-dark-75 mb-5">{{ lesson.description }}</p>
 
     <div class="row g-4">
         <!-- Левая часть: медиа + текст -->
         <div class="col-lg-8">
             {% if lesson.video %}
             <div class="mb-5">
-                <h5 class="text-white mb-3">Видео лекции</h5>
+                <h5 class="text-black mb-3">Видео лекции</h5>
                 <div class="ratio ratio-16x9 rounded overflow-hidden shadow">
                     <iframe src="{{ lesson.video }}" title="Видео урока" allowfullscreen></iframe>
                 </div>
@@ -24,7 +24,7 @@
 
             {% if lesson.audio %}
             <div class="mb-5">
-                <h5 class="text-white mb-3">Аудио версия лекции</h5>
+                <h5 class="text-black mb-3">Аудио версия лекции</h5>
                 <audio controls class="w-100 bg-dark rounded p-2">
                     <source src="{{ lesson.audio }}" type="audio/mpeg">
                     Ваш браузер не поддерживает воспроизведение аудио.
@@ -41,20 +41,15 @@
         </div>
 
         <!-- Правая часть: фото / иллюстрации -->
+        {% if lesson.image %}
         <div class="col-lg-4">
-            {% if lesson.image %}
             <img src="{{ lesson.image }}" 
-                 class="img-fluid rounded shadow" 
-                 alt="{{ lesson.title }}" 
-                 loading="lazy"
-                 style="max-height: 500px; object-fit: cover; width: 100%;">
-            {% else %}
-            <div class="bg-secondary rounded p-5 text-center text-muted">
-                <i class="fa fa-image fa-3x mb-3"></i><br>
-                Иллюстрация к уроку скоро появится
-            </div>
-            {% endif %}
+                class="img-fluid rounded shadow" 
+                alt="{{ lesson.title }}" 
+                loading="lazy"
+                style="hight: auto; min-height: 200px; object-fit: cover; width: 100%;">
         </div>
+        {% endif %}
     </div>
-</div>
-{% endblock %}
+</div> 
+{% endblock %} 
